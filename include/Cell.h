@@ -5,9 +5,14 @@
 
 class Cell {
 private:
-    Coordinates coordinates;
-    Terrain terrain;
-    Unit* unit;
+    Coordinates _coordinates;
+    Terrain* _terrain;
+    Unit* _unit;
 
 public:
+    Cell();
+    void setCoordinates(Coordinates coordinates);
+    void setTerrain(Terrain* terrain);
+    void setUnit(Unit* unit);
+    char getImageOnPlayground();
 };

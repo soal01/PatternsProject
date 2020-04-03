@@ -4,12 +4,17 @@ class Terrain {
 private:
 
 protected:
-    double attackBonus;
-    double defenseBonus;
-    double moveBonus;
-    char imageOnPlayGroud;
+    double _attackBonus;
+    double _defenseBonus;
+    double _moveBonus;
+    char _imageOnPlaygroud;
 
 public:
+    virtual void setAttackBonus(double attackBonus);
+    virtual void setDefenseBonus(double defenseBonus);
+    virtual void setMoveBonus(double moveBonus);
+    virtual void setImageOnPlayground(char imageOnPlayground);
+    virtual char getImageOnPlayGround();
 };
 
 
@@ -21,17 +26,49 @@ public:
 };
 
 
-class Mountains : public Terrain {
+class Mountain : public Terrain {
 private:
 
 public:
-    Mountains();
+    Mountain();
 };
 
 
-class GrassLand {
+class GrassLand : public Terrain {
 private:
 
 public:
     GrassLand();
+};
+
+
+class TerrainFeatures {
+protected:
+    double attackBonus;
+    double defenseBonus;
+    double moveBonus;
+};
+
+class ForestFeatures : public TerrainFeatures {
+    ForestFeatures() {
+        attackBonus = 0;
+        defenseBonus = 1;
+        moveBonus = -0.5;
+    }
+};
+
+class MountainFeatures : public TerrainFeatures {
+    MountainFeatures() {
+        attackBonus = 1;
+        defenseBonus = 1;
+        moveBonus = -1;
+    }
+};
+
+class GrassLandFeatures : public TerrainFeatures {
+    GrassLandFeatures() {
+        attackBonus = 1;
+        defenseBonus = 0;
+        moveBonus = 1;
+    }
 };

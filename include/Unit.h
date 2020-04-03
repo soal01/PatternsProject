@@ -6,14 +6,27 @@ class Unit {
 private:
 
 protected:
-    unsigned long long id;
-    double health;
-    double damage;
-    double pointsOfMobility;
+    unsigned long long _id;
+    int _cost;
+    double _health;
+    double _damage;
+    double _pointsOfMobility;
     //Coordinates coordinates;
-    Cell* positionOfUnit;
-    int atackRange; 
-public:    
+    Cell* _positionOfUnit;
+    int _playerId;
+    int _attackRange; 
+    char _imageOnPlaygroud;
+public: 
+    virtual void setId(unsigned long long id);
+    virtual void setCost(int cost);
+    virtual void setHealth(double health);
+    virtual void setDamage(double damage);
+    virtual void setPointsOfMobility(double pointsOfMobility);
+    virtual void setPositionOfUnit(Cell* positionOfUnit);
+    virtual void setPlayerId(int playerId);
+    virtual void setAttackRange(int attackRange);
+    virtual void setImageOnPlayground(char imageOnPlayground);
+    virtual char getImageOnPlayGround();
 };
 
 
@@ -51,3 +64,5 @@ private:
 public: 
     Artillery();
 };
+
+

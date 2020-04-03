@@ -4,6 +4,8 @@
 
 class Player {
 private:
+    int id;
     std::list<Unit> units;
+    int money;
 public:
 };
