@@ -1,4 +1,5 @@
 #include"../include/MainBuilder.h"
+#include<iostream>
 
 Terrain* MainBuilder::buildTerrain(TerrainBuilder* builder) {
     builder->reset();
@@ -9,7 +10,7 @@ Terrain* MainBuilder::buildTerrain(TerrainBuilder* builder) {
     return builder->getResult();
 }
 
-Cell* MainBuilder::buildCell(CellBuilder* builder, Terrain* terrainOfCell = nullptr) {
+Cell* MainBuilder::buildCell(CellBuilder* builder, Terrain* terrainOfCell) {
     builder->reset();
     builder->setTerrain(terrainOfCell);
     return builder->getResult();

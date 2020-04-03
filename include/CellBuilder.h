@@ -8,4 +8,5 @@ public:
     void reset();
     void setTerrain(Terrain* terrain = nullptr);
     Cell* getResult();
+    ~CellBuilder();
 };

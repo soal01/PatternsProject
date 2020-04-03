@@ -1,5 +1,6 @@
-#include"../include/Cell.h"
+#include"Cell.h"
 
+Cell::Cell(): _coordinates('A', 0), _terrain(nullptr), _unit(nullptr) {}
 
 void Cell::setCoordinates(Coordinates coordinates) {
     _coordinates = coordinates;

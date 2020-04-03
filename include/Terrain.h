@@ -1,5 +1,8 @@
 #pragma once
 
+enum typeOfTerrain {forest, mountain, grassLand};
+
+
 class Terrain {
 private:
 

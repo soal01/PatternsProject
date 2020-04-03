@@ -20,8 +20,8 @@ void Unit::setPointsOfMobility(double pointsOfMobility) {
     _pointsOfMobility = pointsOfMobility;
 }
 
-void Unit::setPositionOfUnit(Cell* positionOfUnit) {
-    _positionOfUnit = positionOfUnit;
+void Unit::setPositionOfUnit(Coordinates coordinates) {
+    _coordinates = coordinates;
 }
 
 void Unit::setPlayerId(int playerId) {
@@ -39,3 +39,13 @@ void Unit::setImageOnPlayground(char imageOnPlayground) {
 char Unit::getImageOnPlayGround() {
     return _imageOnPlaygroud;
 }
+
+Infantryman::Infantryman(): Unit() {}
+
+Cavalryman::Cavalryman(): Unit() {}
+
+Tank::Tank(): Unit() {}
+
+ArmoredCar::ArmoredCar(): Unit() {}
+
+Artillery::Artillery(): Unit() {}

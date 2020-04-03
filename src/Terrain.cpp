@@ -1,4 +1,4 @@
-#include"include/Terrain.h"
+#include"../include/Terrain.h"
 
 void Terrain::setAttackBonus(double attackBonus) {
     _attackBonus = attackBonus;
@@ -19,3 +19,9 @@ void Terrain::setImageOnPlayground(char imageOnPlayground) {
 char Terrain::getImageOnPlayGround() {
     return _imageOnPlaygroud;
 }
+
+Forest::Forest(): Terrain() {}
+
+Mountain::Mountain(): Terrain() {}
+
+GrassLand::GrassLand(): Terrain() {}

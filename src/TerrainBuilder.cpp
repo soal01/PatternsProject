@@ -1,7 +1,8 @@
-#include"include/TerrainBuilder.h"
+#include"../include/TerrainBuilder.h"
 
 
 void ForestBuilder::reset() {
+    //delete result;
     result = new Forest();
 }
 
@@ -27,6 +28,7 @@ Forest* ForestBuilder::getResult() {
 
 
 void MountainBuilder::reset() {
+    //delete result;
     result = new Mountain();
 }
 
@@ -52,6 +54,7 @@ Mountain* MountainBuilder::getResult() {
 
 
 void GrassLandBuilder::reset() {
+    //delete result;
     result = new GrassLand();
 }
 

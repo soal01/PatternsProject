@@ -1,6 +1,5 @@
 #pragma once
 #include"Coordinates.h"
-#include"Cell.h"
 
 class Unit {
 private:
@@ -11,8 +10,8 @@ protected:
     double _health;
     double _damage;
     double _pointsOfMobility;
-    //Coordinates coordinates;
-    Cell* _positionOfUnit;
+    Coordinates _coordinates;
+    //Cell* _positionOfUnit;
     int _playerId;
     int _attackRange; 
     char _imageOnPlaygroud;
@@ -22,7 +21,7 @@ public:
     virtual void setHealth(double health);
     virtual void setDamage(double damage);
     virtual void setPointsOfMobility(double pointsOfMobility);
-    virtual void setPositionOfUnit(Cell* positionOfUnit);
+    virtual void setPositionOfUnit(Coordinates coordinates);
     virtual void setPlayerId(int playerId);
     virtual void setAttackRange(int attackRange);
     virtual void setImageOnPlayground(char imageOnPlayground);
