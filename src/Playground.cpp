@@ -4,6 +4,7 @@
 Playground* Playground::mainPlayground = nullptr;
 
 void Playground::initializePlayers() {
+    numberOfActivePlayer = 0;
     for (unsigned i = 0; i < COUNT_OF_PLAYERS; ++i) {
         _players[i] = Player(i);
     }
@@ -17,20 +18,18 @@ void Playground::initializeCells() {
         for (unsigned j = 0; j < SIZE_OF_PLAYGROUND; ++j) {
             int generatedTypeOfTerrain = rand() % 3;
             terrain = nullptr;
-            if (generatedTypeOfTerrain == typeOfTerrain::forest) {
-                terrain = builder.buildTerrain(&builder.forestBuilder);
+            if (generatedTypeOfTerrain == TypeOfTerrain::forest) {
+                terrain = builder.buildTerrain(new ForestBuilder());
             }
-            if (generatedTypeOfTerrain == typeOfTerrain::mountain) {
-                terrain = builder.buildTerrain(&builder.mountainBuilder);
+            if (generatedTypeOfTerrain == TypeOfTerrain::mountain) {
+                terrain = builder.buildTerrain(new MountainBuilder());
             }
-            if (generatedTypeOfTerrain == typeOfTerrain::grassLand) {
-                terrain = builder.buildTerrain(&builder.grassLandBuilder);
+            if (generatedTypeOfTerrain == TypeOfTerrain::grassLand) {
+                terrain = builder.buildTerrain(new GrassLandBuilder());
             }
-            //std::cout<<terrain->getImageOnPlayGround();
-            _cells[i][j] = builder.buildCell(&builder.cellBuilder, terrain);
+            _cells[i][j] = builder.buildCell(new CellBuilder(), terrain);
         }
     }
-    //delete terrain;
 }
 
 Playground::Playground() {
@@ -79,3 +78,8 @@ void Playground::printMap() {
     }
 }
 
+void Playground::setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit) {
+    Unit* newUnit = _players[numberOfActivePlayer].buyUnit(builder, typeOfUnit);
+    newUnit->setPositionOfUnit(coordinates);
+    _cells[coordinates.first][coordinates.second]->setUnit(newUnit);
+}

@@ -40,6 +40,14 @@ char Unit::getImageOnPlayGround() {
     return _imageOnPlaygroud;
 }
 
+unsigned long long Unit::getId() {
+    return _id;
+}
+
+int Unit::getCost() {
+    return _cost;
+}
+
 Infantryman::Infantryman(): Unit() {}
 
 Cavalryman::Cavalryman(): Unit() {}

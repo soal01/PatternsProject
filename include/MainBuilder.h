@@ -11,10 +11,6 @@ private:
     unsigned nextUnitId;
 
 public:
-    CellBuilder cellBuilder;
-    ForestBuilder forestBuilder;
-    MountainBuilder mountainBuilder;
-    GrassLandBuilder grassLandBuilder;
     Terrain* buildTerrain(TerrainBuilder* builder);
     Cell* buildCell(CellBuilder* builder, Terrain* terrainOfCell = nullptr);
     Unit* buildUnit(UnitBuilder* builder);

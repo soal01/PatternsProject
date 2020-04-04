@@ -11,6 +11,7 @@ private:
     static const unsigned SIZE_OF_PLAYGROUND = 20;
     Cell* _cells[SIZE_OF_PLAYGROUND][SIZE_OF_PLAYGROUND];
     Player _players[2];
+    unsigned numberOfActivePlayer;
     
     Playground();
     void initializePlayers();
@@ -23,8 +24,6 @@ public:
     static Playground* getInstance();
     void deleteInstance();
     void printMap();
-    void setUnitOnPlayground();
+    void setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit);
     ~Playground();
 };
-
-//Playground::playground = nullptr;

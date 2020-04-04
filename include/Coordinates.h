@@ -1,7 +1,9 @@
 #pragma once
 
 struct Coordinates {
-    char first;
+    int first;
     int second;
-    Coordinates(char first = 'A', int second = 0): first(first), second(second) {}
+    Coordinates(int first = 0, int second = 0): first(first), second(second) {}
 };
+
+

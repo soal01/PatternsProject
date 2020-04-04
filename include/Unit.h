@@ -1,6 +1,8 @@
 #pragma once
 #include"Coordinates.h"
 
+enum TypeOfUnit {infantryman, cavalryman, tank, armoredCar, artillery};
+
 class Unit {
 private:
 
@@ -11,10 +13,10 @@ protected:
     double _damage;
     double _pointsOfMobility;
     Coordinates _coordinates;
-    //Cell* _positionOfUnit;
     int _playerId;
     int _attackRange; 
     char _imageOnPlaygroud;
+    
 public: 
     virtual void setId(unsigned long long id);
     virtual void setCost(int cost);
@@ -26,6 +28,8 @@ public:
     virtual void setAttackRange(int attackRange);
     virtual void setImageOnPlayground(char imageOnPlayground);
     virtual char getImageOnPlayGround();
+    virtual unsigned long long getId();
+    virtual int getCost();
 };
 
 

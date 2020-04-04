@@ -1,6 +1,6 @@
 #pragma once
 
-enum typeOfTerrain {forest, mountain, grassLand};
+enum TypeOfTerrain {forest, mountain, grassLand};
 
 
 class Terrain {

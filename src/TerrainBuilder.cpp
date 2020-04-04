@@ -28,7 +28,6 @@ Forest* ForestBuilder::getResult() {
 
 
 void MountainBuilder::reset() {
-    //delete result;
     result = new Mountain();
 }
 
@@ -54,7 +53,6 @@ Mountain* MountainBuilder::getResult() {
 
 
 void GrassLandBuilder::reset() {
-    //delete result;
     result = new GrassLand();
 }
 

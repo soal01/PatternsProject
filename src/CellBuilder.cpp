@@ -4,7 +4,6 @@
 
 
 void CellBuilder::reset() {
-    //delete result;
     result = new Cell();
 }
 
