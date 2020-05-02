@@ -1,5 +1,6 @@
 #include"../include/Playground.h"
 #include<iostream>
+#include<iomanip>
 
 Playground* Playground::mainPlayground = nullptr;
 
@@ -69,8 +70,18 @@ void Playground::deleteInstance() {
     mainPlayground = nullptr;
 }
 
+
+
 void Playground::printMap() {
+    std::cout << std::string('=', 25);
+    std:: cout << "  ";
     for (unsigned i = 0; i < SIZE_OF_PLAYGROUND; ++i) {
+        std::cout << (char)('A' + i) << " ";
+    }
+    std::cout << std::endl;
+
+    for (unsigned i = 0; i < SIZE_OF_PLAYGROUND; ++i) {
+        std::cout << std::right << std::setw(2)<< i << " ";
         for (unsigned j = 0; j < SIZE_OF_PLAYGROUND; ++j) {
             std::cout << _cells[i][j]->getImageOnPlayground() << " ";
         }
@@ -78,8 +89,74 @@ void Playground::printMap() {
     }
 }
 
+void Playground::print() {
+    printMap();
+    std::cout << "Info:\n" << _info;
+    std::cout << "Error: " << _error;
+}
+
 void Playground::setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit) {
     Unit* newUnit = _players[numberOfActivePlayer].buyUnit(builder, typeOfUnit);
     newUnit->setPositionOfUnit(coordinates);
     _cells[coordinates.first][coordinates.second]->setUnit(newUnit);
+}
+
+void Playground::setInfo(std::string newInfo) {
+    _info = newInfo;
+}
+
+void Playground::setError(std::string newError) {
+    _error = newError;
+}
+
+Command* Playground::readCommand() {
+    std::cout << "Command: ";
+    std::string typeOfCommand;
+    Coordinates from = Coordinates(-1, -1);
+    Coordinates to = Coordinates(-1, -1);
+    TypeOfUnit typeOfUnit = 0;
+    std::cin >> typeOfCommand;
+    if (typeOfCommand == "move") {
+        try {
+            int first, second;
+            std::cin >> first >> second;
+            from = Coordinates(first, second);
+            std::cin >> first >> second;
+            to = Coordinates(first, second);
+            return new MoveCommand(mainPlayground, from, to, typeOfUnit);
+        }catch (...) {
+            setError("invalid arguments");
+            std::cout << std::endl;
+            return nullptr;
+        }
+    }
+    if (typeOfCommand == "info") {
+        try {
+            int first, second;
+            std::cin >> first >> second;
+            from = Coordinates(first, second);
+            return new InfoCommand(mainPlayground, from, to, typeOfUnit);
+        }catch (...) {
+            setError("invalid arguments");
+            std::cout << std::endl;
+            return nullptr;
+        }
+    }
+    if (typeOfCommand == "buy") {
+        try {
+            int first, second;
+            std::cin >> first >> second;
+            from = Coordinates(first, second);
+            std::cin >> first;
+            typeOfUnit = first;
+            return new BuyCommand(mainPlayground, from, to, typeOfUnit);
+        }catch (...) {
+            setError("invalid arguments");
+            std::cout << std::endl;
+            return nullptr;
+        }
+    }
+    setError("invalid command");
+    std::cout << std::endl;
+    return nullptr;
 }

@@ -1,4 +1,6 @@
 #pragma once
+#include<cmath>
+#include<algorithm>
 
 struct Coordinates {
     int first;

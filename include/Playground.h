@@ -3,6 +3,7 @@
 #include"string"
 #include"Player.h"
 #include"MainBuilder.h"
+#include"Command.h"
 
 class Playground {
 private:
@@ -12,6 +13,8 @@ private:
     Cell* _cells[SIZE_OF_PLAYGROUND][SIZE_OF_PLAYGROUND];
     Player _players[2];
     unsigned numberOfActivePlayer;
+    std::string _info;
+    std::string _error;
     
     Playground();
     void initializePlayers();
@@ -20,10 +23,21 @@ private:
     void deleteCells();
     static Playground* mainPlayground;
     
+    void printMap();
+    //void printInfo(Coordinates coordinates);
+    //std::string getErrors();
+
 public:
     static Playground* getInstance();
     void deleteInstance();
-    void printMap();
+    std::string getInfoAboutCell(Coordinates coordinates);
+    void setInfo(std::string newInfo);
+    void setError(std::string newError);
+    void moveUnit(Coordinates from, Coordinates to);
+    
+    void print();
+    bool isEndOfGame();
+    Command* readCommand();
     void setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit);
     ~Playground();
 };
