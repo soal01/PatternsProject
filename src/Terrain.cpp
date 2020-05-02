@@ -1,5 +1,18 @@
 #include"../include/Terrain.h"
 
+std::string getTypeOfTerrain(Terrain* terrain) {
+    Forest* forest = dynamic_cast<Forest*>(terrain);
+    if (forest)
+        return "forest";
+    Mountain* mountain = dynamic_cast<Mountain*>(terrain);
+    if (mountain)
+        return "mountain";
+    GrassLand* grassLand = dynamic_cast<GrassLand*>(terrain);
+    if (grassLand)
+        return "grass land";
+}
+
+
 void Terrain::setAttackBonus(double attackBonus) {
     _attackBonus = attackBonus;
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include<string>
 
 enum TypeOfTerrain {forest, mountain, grassLand};
 
@@ -75,3 +76,5 @@ class GrassLandFeatures : public TerrainFeatures {
         moveBonus = 1;
     }
 };
+
+std::string getTypeOfTerrain(Terrain* terrain);

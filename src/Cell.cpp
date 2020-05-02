@@ -22,3 +22,11 @@ char Cell::getImageOnPlayground() {
         return _terrain->getImageOnPlayGround();
     }
 }
+
+Terrain* Cell::getTerrain() {
+    return _terrain;
+}
+
+Unit* Cell::getUnit() {
+    return _unit;
+}

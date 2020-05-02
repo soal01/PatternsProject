@@ -109,54 +109,77 @@ void Playground::setError(std::string newError) {
     _error = newError;
 }
 
-Command* Playground::readCommand() {
-    std::cout << "Command: ";
-    std::string typeOfCommand;
-    Coordinates from = Coordinates(-1, -1);
-    Coordinates to = Coordinates(-1, -1);
-    TypeOfUnit typeOfUnit = 0;
-    std::cin >> typeOfCommand;
-    if (typeOfCommand == "move") {
-        try {
-            int first, second;
-            std::cin >> first >> second;
-            from = Coordinates(first, second);
-            std::cin >> first >> second;
-            to = Coordinates(first, second);
-            return new MoveCommand(mainPlayground, from, to, typeOfUnit);
-        }catch (...) {
-            setError("invalid arguments");
-            std::cout << std::endl;
-            return nullptr;
+bool Playground::isEndOfGame() {
+    for (unsigned i = 0; i < COUNT_OF_PLAYERS; ++i) {
+        if (_players[i].countOfUnits() == 0)
+            return true;
+    }
+    return false;
+}
+
+std::string Playground::getInfoAboutCell(Coordinates coordinates) {
+    size_t x = coordinates.first;
+    size_t y = coordinates.second;
+    std::string ans = "Info:\n";
+    ans += "Coordinates: " + std::to_string((char)('A' + x)) + std::to_string(y) + "\n";
+    ans += "Terrain: " + getTypeOfTerrain(_cells[x][y]->getTerrain()) + "\n";
+    Unit* unit = _cells[x][y]->getUnit();
+    ans += "Unit: " + getTypeOfUnit(unit);
+    if (unit) {
+        ans += "player's ID: " + std::to_string(unit->getPlayerId()) + "\n";
+        ans += "health: " + std::to_string(unit->getHealth()) + "\n";
+        ans += "points of mobility: " + std::to_string(unit->getPointsOfMobility()) + "\n";
+    }
+    return ans;
+}
+
+bool Playground::isCorrectMove(Coordinates from, Coordinates to) {
+    size_t xFrom = from.first;
+    size_t yFrom = from.second;
+    size_t xTo = to.first;
+    size_t yTo = to.second;
+
+}
+
+bool Playground::isAttackMove(Coordinates from, Coordinates to) {
+    size_t xFrom = from.first;
+    size_t yFrom = from.second;
+    size_t xTo = to.first;
+    size_t yTo = to.second;
+
+}
+
+void Playground::calculateAttack(Unit* attacker, Terrain* terrainOfAttacker,
+                        Unit* defender, Terrain* terrainOfDefender) {
+
+}
+
+void Playground::moveUnit(Coordinates from, Coordinates to) {
+    size_t xFrom = from.first;
+    size_t yFrom = from.second;
+    size_t xTo = to.first;
+    size_t yTo = to.second;
+    if (isAttackMove(from, to)) {
+        Unit* attacker = _cells[xFrom][yFrom]->getUnit();
+        Unit* defender = _cells[xTo][yTo]->getUnit();
+        Terrain* terrainOfAttacker = _cells[xFrom][yFrom]->getTerrain();
+        Terrain* terrainOfDefender = _cells[xTo][yTo]->getTerrain();
+        calculateAttack(attacker, terrainOfAttacker, defender, terrainOfDefender);
+        if (attacker->getHealth() <= 0) {
+            attacker = nullptr;
+        }
+        if (defender->getHealth() <= 0) {
+            _cells[xFrom][yFrom]->setUnit(nullptr);
+            _cells[xTo][yTo]->setUnit(attacker);
+        }
+        else {
+            _cells[xFrom][yFrom]->setUnit(attacker);
+            _cells[xTo][yTo]->setUnit(defender);
         }
     }
-    if (typeOfCommand == "info") {
-        try {
-            int first, second;
-            std::cin >> first >> second;
-            from = Coordinates(first, second);
-            return new InfoCommand(mainPlayground, from, to, typeOfUnit);
-        }catch (...) {
-            setError("invalid arguments");
-            std::cout << std::endl;
-            return nullptr;
-        }
+    else {
+        Unit* unit = _cells[xFrom][yFrom]->getUnit();
+        _cells[xFrom][yFrom]->setUnit(nullptr);
+        _cells[xTo][yTo]->setUnit(unit);
     }
-    if (typeOfCommand == "buy") {
-        try {
-            int first, second;
-            std::cin >> first >> second;
-            from = Coordinates(first, second);
-            std::cin >> first;
-            typeOfUnit = first;
-            return new BuyCommand(mainPlayground, from, to, typeOfUnit);
-        }catch (...) {
-            setError("invalid arguments");
-            std::cout << std::endl;
-            return nullptr;
-        }
-    }
-    setError("invalid command");
-    std::cout << std::endl;
-    return nullptr;
 }

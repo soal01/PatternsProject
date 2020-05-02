@@ -14,5 +14,7 @@ public:
     void setCoordinates(Coordinates coordinates);
     void setTerrain(Terrain* terrain);
     void setUnit(Unit* unit);
+    Terrain* getTerrain();
+    Unit* getUnit();
     char getImageOnPlayground();
 };

@@ -16,5 +16,6 @@ public:
     Player(int id = 0);
     bool isHisTurn();
     Unit* buyUnit(MainBuilder& builder, TypeOfUnit typeOfUnit);
+    size_t countOfUnits();
     ~Player();
 };

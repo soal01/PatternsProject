@@ -1,32 +1,38 @@
 #pragma once
 #include"Playground.h"
+#include"../include/Unit.h"
 
 class Command {
 protected:    
-    Playground *playground = nullptr;
+    Playground* playground;
     Coordinates from, to;
-    TypeOfUnit typeOfUnit;
+    TypeOfUnit typeOfUnit; 
 public:
-    Command(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit):
-     playground(playground), from(from), to(to), typeOfUnit(typeOfUnit) {}
+    Command(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit);
     virtual void execute() = 0;
 };
 
 class MoveCommand: public Command {
-    MoveCommand(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit):
-    Command::Command(playground, from, to, typeOfUnit) {}
+public:
+    MoveCommand(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit);
     void execute() override;
 };
 
 
 class BuyCommand: public Command {
-    BuyCommand(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit):
-    Command::Command(playground, from, to, typeOfUnit) {}
+public:
+    BuyCommand(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit);
     void execute() override;
 };
 
 class InfoCommand: public Command {
-    InfoCommand(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit):
-    Command::Command(playground, from, to, typeOfUnit) {}
+public:
+    InfoCommand(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit);
     void execute() override;
+};
+
+
+class CommandReader {
+public:
+    static Command* readCommand(Playground* mainPlayground);
 };

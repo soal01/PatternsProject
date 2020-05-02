@@ -31,3 +31,7 @@ Unit* Player::buyUnit(MainBuilder& builder, TypeOfUnit typeOfUnit) {
     units[newUnit->getId()] = newUnit;
     return newUnit;
 }
+
+size_t Player::countOfUnits() {
+    return units.size();
+}

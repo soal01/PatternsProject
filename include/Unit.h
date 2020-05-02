@@ -1,7 +1,10 @@
 #pragma once
 #include"Coordinates.h"
+#include<string>
 
 enum TypeOfUnit {infantryman, cavalryman, tank, armoredCar, artillery};
+TypeOfUnit convertToTypeOfUnit(int type);
+
 
 class Unit {
 private:
@@ -30,6 +33,9 @@ public:
     virtual char getImageOnPlayGround();
     virtual unsigned long long getId();
     virtual int getCost();
+    virtual double getHealth();
+    virtual int getPointsOfMobility();
+    virtual int getPlayerId();
 };
 
 
@@ -69,3 +75,4 @@ public:
 };
 
 
+std::string getTypeOfUnit(Unit* unit);

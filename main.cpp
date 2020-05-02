@@ -13,7 +13,7 @@ int main() {
     playground->setUnitOnPlayground(Coordinates(5, 3), TypeOfUnit::cavalryman);
     playground->printMap();*/
     while(!playground->isEndOfGame()) {
-        Command* command = playground->readCommand();
+        Command* command = CommandReader::readCommand(playground->getInstance());
         if (command) 
             command->execute();
         playground->print();
