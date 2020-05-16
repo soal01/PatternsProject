@@ -19,6 +19,7 @@ public:
     virtual void setMoveBonus(double moveBonus);
     virtual void setImageOnPlayground(char imageOnPlayground);
     virtual char getImageOnPlayGround();
+    virtual double getMoveBonus();
 };
 
 

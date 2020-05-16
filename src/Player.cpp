@@ -35,3 +35,7 @@ Unit* Player::buyUnit(MainBuilder& builder, TypeOfUnit typeOfUnit) {
 size_t Player::countOfUnits() {
     return units.size();
 }
+
+int Player::getMoney() {
+    return _money;
+}

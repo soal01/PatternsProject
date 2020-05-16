@@ -36,3 +36,13 @@ class CommandReader {
 public:
     static Command* readCommand(Playground* mainPlayground);
 };
+
+
+
+class CommandChecker {
+public:
+    static bool checkMoveCommand(Playground* mainPlayground, Coordinates from, Coordinates to);
+    static bool checkBuyCommand(Playground* mainPlayground, Coordinates from, TypeOfUnit typeOfUnit);
+    static bool checkInfoCommand(Playground* mainPlayground, Coordinates from);
+    static bool isAttackMove(Playground* mainPlayground, Coordinates from, Coordinates to);
+};

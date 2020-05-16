@@ -183,3 +183,10 @@ void Playground::moveUnit(Coordinates from, Coordinates to) {
         _cells[xTo][yTo]->setUnit(unit);
     }
 }
+
+Player Playground::getCurrentPlayer() {
+    return _players[numberOfActivePlayer];
+}
+Cell* Playground::getCell(Coordinates coordinates) {
+    return _cells[coordinates.first][coordinates.second];
+}

@@ -11,7 +11,7 @@ private:
     static const unsigned SIZE_OF_PLAYGROUND = 20;
     Cell* _cells[SIZE_OF_PLAYGROUND][SIZE_OF_PLAYGROUND];
     Player _players[2];
-    unsigned numberOfActivePlayer;
+    
     std::string _info;
     std::string _error;
     
@@ -27,13 +27,14 @@ private:
     //std::string getErrors();
 
 public:
+    unsigned numberOfActivePlayer;
     static Playground* getInstance();
     void deleteInstance();
     std::string getInfoAboutCell(Coordinates coordinates);
     void setInfo(std::string newInfo);
     void setError(std::string newError);
-    bool isCorrectMove(Coordinates from, Coordinates to);
-    bool isAttackMove(Coordinates from, Coordinates to);
+    //bool isCorrectMove(Coordinates from, Coordinates to);
+    //bool isAttackMove(Coordinates from, Coordinates to);
     void moveUnit(Coordinates from, Coordinates to);
     void calculateAttack(Unit* attacker, Terrain* terrainOfAttacker,
                         Unit* defender, Terrain* terrainOfDefender);
@@ -41,5 +42,7 @@ public:
     void print();
     bool isEndOfGame();
     void setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit);
+    Player getCurrentPlayer();
+    Cell* getCell(Coordinates coordinates);
     ~Playground();
 };

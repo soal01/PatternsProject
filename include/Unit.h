@@ -36,6 +36,7 @@ public:
     virtual double getHealth();
     virtual int getPointsOfMobility();
     virtual int getPlayerId();
+    virtual int getAttackRange();
     virtual void heal() = 0;
     virtual void recoveryOfPointOfMobility() = 0;
 };

@@ -98,6 +98,10 @@ int Unit::getPlayerId() {
     return _playerId;
 }
 
+int Unit::getAttackRange() {
+    return _attackRange;
+}
+
 void Infantryman::heal() {
     _health = std::min(_health * 1.1, DefaultInfatrymanStats::health);
 }

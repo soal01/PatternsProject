@@ -33,6 +33,10 @@ char Terrain::getImageOnPlayGround() {
     return _imageOnPlaygroud;
 }
 
+double Terrain::getMoveBonus() {
+    return _moveBonus;
+}
+
 Forest::Forest(): Terrain() {}
 
 Mountain::Mountain(): Terrain() {}
