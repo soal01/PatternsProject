@@ -98,6 +98,46 @@ int Unit::getPlayerId() {
     return _playerId;
 }
 
+void Infantryman::heal() {
+    _health = std::min(_health * 1.1, DefaultInfatrymanStats::health);
+}
+
+void Cavalryman::heal() {
+    _health = std::min(_health * 1.1, DefaultCavalrymanStats::health);
+}
+
+void Tank::heal() {
+    _health = std::min(_health * 1.1, DefaultTankStats::health);
+}
+
+void ArmoredCar::heal() {
+    _health = std::min(_health * 1.1, DefaultArmoredCarStats::health);
+}
+
+void Artillery::heal() {
+    _health = std::min(_health * 1.1, DefaultArtilleryStats::health);
+}
+
+void Infantryman::recoveryOfPointOfMobility() {
+    _pointsOfMobility = DefaultInfatrymanStats::pointsOfMobility;
+}
+
+void Cavalryman::recoveryOfPointOfMobility() {
+    _pointsOfMobility = DefaultCavalrymanStats::pointsOfMobility;
+}
+
+void Tank::recoveryOfPointOfMobility() {
+    _pointsOfMobility = DefaultTankStats::pointsOfMobility;
+}
+
+void ArmoredCar::recoveryOfPointOfMobility() {
+    _pointsOfMobility = DefaultArmoredCarStats::pointsOfMobility;
+}
+
+void Artillery::recoveryOfPointOfMobility() {
+    _pointsOfMobility = DefaultArtilleryStats::pointsOfMobility;
+}
+
 Infantryman::Infantryman(): Unit() {}
 
 Cavalryman::Cavalryman(): Unit() {}

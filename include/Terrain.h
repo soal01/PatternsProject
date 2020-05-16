@@ -57,7 +57,7 @@ class ForestFeatures : public TerrainFeatures {
     ForestFeatures() {
         attackBonus = 0;
         defenseBonus = 1;
-        moveBonus = -0.5;
+        moveBonus = -1.5;
     }
 };
 
@@ -65,7 +65,7 @@ class MountainFeatures : public TerrainFeatures {
     MountainFeatures() {
         attackBonus = 1;
         defenseBonus = 1;
-        moveBonus = -1;
+        moveBonus = -3;
     }
 };
 
@@ -73,7 +73,7 @@ class GrassLandFeatures : public TerrainFeatures {
     GrassLandFeatures() {
         attackBonus = 1;
         defenseBonus = 0;
-        moveBonus = 1;
+        moveBonus = -1;
     }
 };
 

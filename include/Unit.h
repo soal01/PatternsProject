@@ -36,6 +36,8 @@ public:
     virtual double getHealth();
     virtual int getPointsOfMobility();
     virtual int getPlayerId();
+    virtual void heal() = 0;
+    virtual void recoveryOfPointOfMobility() = 0;
 };
 
 
@@ -44,6 +46,8 @@ private:
 
 public:
     Infantryman();
+    void heal() override;
+    void recoveryOfPointOfMobility() override;
 };
 
 class Cavalryman : public Unit {
@@ -51,6 +55,8 @@ private:
 
 public:
     Cavalryman();
+    void heal() override;
+    void recoveryOfPointOfMobility() override;
 };
 
 class Tank : public Unit {
@@ -58,6 +64,8 @@ private:
 
 public:
     Tank();
+    void heal() override;
+    void recoveryOfPointOfMobility() override;
 };
 
 class ArmoredCar : public Unit {
@@ -65,6 +73,8 @@ private:
 
 public:
     ArmoredCar();
+    void heal() override;
+    void recoveryOfPointOfMobility() override;
 };
 
 class Artillery : public Unit {
@@ -72,7 +82,49 @@ private:
 
 public: 
     Artillery();
+    void heal() override;
+    void recoveryOfPointOfMobility() override;
 };
 
 
 std::string getTypeOfUnit(Unit* unit);
+
+struct DefaultInfatrymanStats {
+    static const int cost = 50;
+    static const double health = 75;
+    static const double damage = 8;
+    static const double pointsOfMobility = 4;
+    static const double attackRange = 1;
+};
+
+struct DefaultCavalrymanStats {
+    static const int cost = 75;
+    static const double health = 100;
+    static const double damage = 7;
+    static const double pointsOfMobility = 8;
+    static const double attackRange = 1;
+};
+
+struct DefaultTankStats {
+    static const int cost = 200;
+    static const double health = 200;
+    static const double damage = 16;
+    static const double pointsOfMobility = 5;
+    static const double attackRange = 1;
+};
+
+struct DefaultArmoredCarStats {
+    static const int cost = 100;
+    static const double health = 130;
+    static const double damage = 10;
+    static const double pointsOfMobility = 6;
+    static const double attackRange = 1;
+};
+
+struct DefaultArtilleryStats {
+    static const int cost = 140;
+    static const double health = 80;
+    static const double damage = 15;
+    static const double pointsOfMobility = 2;
+    static const double attackRange = 2;
+};

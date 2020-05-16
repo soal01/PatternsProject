@@ -6,23 +6,23 @@ void InfatrymanBuilder::reset(int idOfNewUnit) {
 }
 
 void InfatrymanBuilder::setCost() {
-    result->setCost(50);
+    result->setCost(DefaultInfatrymanStats::cost);
 }
 
 void InfatrymanBuilder::setHealth() {
-    result->setHealth(75);
+    result->setHealth(DefaultInfatrymanStats::health);
 }
 
 void InfatrymanBuilder::setDamage() {
-    result->setDamage(8);
+    result->setDamage(DefaultInfatrymanStats::damage);
 }
 
 void InfatrymanBuilder::setPointsOfMobility() {
-    result->setPointsOfMobility(4);
+    result->setPointsOfMobility(DefaultInfatrymanStats::pointsOfMobility);
 }
 
 void InfatrymanBuilder::setAttackRange() {
-    result->setAttackRange(1);
+    result->setAttackRange(DefaultInfatrymanStats::attackRange);
 }
 
 void InfatrymanBuilder::setImageOnPlayGround() {
@@ -40,23 +40,23 @@ void CavalrymanBuilder::reset(int idOfNewUnit) {
 }
 
 void CavalrymanBuilder::setCost() {
-    result->setCost(75);
+    result->setCost(DefaultCavalrymanStats::cost);
 }
 
 void CavalrymanBuilder::setHealth() {
-    result->setHealth(100);
+    result->setHealth(DefaultCavalrymanStats::health);
 }
 
 void CavalrymanBuilder::setDamage() {
-    result->setDamage(7);
+    result->setDamage(DefaultCavalrymanStats::damage);
 }
 
 void CavalrymanBuilder::setPointsOfMobility() {
-    result->setPointsOfMobility(8);
+    result->setPointsOfMobility(DefaultCavalrymanStats::pointsOfMobility);
 }
 
 void CavalrymanBuilder::setAttackRange() {
-    result->setAttackRange(1);
+    result->setAttackRange(DefaultCavalrymanStats::attackRange);
 }
 
 void CavalrymanBuilder::setImageOnPlayGround() {
@@ -74,23 +74,23 @@ void TankBuilder::reset(int idOfNewUnit) {
 }
 
 void TankBuilder::setCost() {
-    result->setCost(200);
+    result->setCost(DefaultTankStats::cost);
 }
 
 void TankBuilder::setHealth() {
-    result->setHealth(200);
+    result->setHealth(DefaultTankStats::health);
 }
 
 void TankBuilder::setDamage() {
-    result->setDamage(16);
+    result->setDamage(DefaultTankStats::damage);
 }
 
 void TankBuilder::setPointsOfMobility() {
-    result->setPointsOfMobility(5);
+    result->setPointsOfMobility(DefaultTankStats::pointsOfMobility);
 }
 
 void TankBuilder::setAttackRange() {
-    result->setAttackRange(1);
+    result->setAttackRange(DefaultTankStats::attackRange);
 }
 
 void TankBuilder::setImageOnPlayGround() {
@@ -108,23 +108,23 @@ void ArmoredCarBuilder::reset(int idOfNewUnit) {
 }
 
 void ArmoredCarBuilder::setCost() {
-    result->setCost(100);
+    result->setCost(DefaultArmoredCarStats::cost);
 }
 
 void ArmoredCarBuilder::setHealth() {
-    result->setHealth(130);
+    result->setHealth(DefaultArmoredCarStats::health);
 }
 
 void ArmoredCarBuilder::setDamage() {
-    result->setDamage(10);
+    result->setDamage(DefaultArmoredCarStats::damage);
 }
 
 void ArmoredCarBuilder::setPointsOfMobility() {
-    result->setPointsOfMobility(6);
+    result->setPointsOfMobility(DefaultArmoredCarStats::pointsOfMobility);
 }
 
 void ArmoredCarBuilder::setAttackRange() {
-    result->setAttackRange(1);
+    result->setAttackRange(DefaultArmoredCarStats::attackRange);
 }
 
 void ArmoredCarBuilder::setImageOnPlayGround() {
@@ -142,19 +142,19 @@ void ArtilleryBuilder::reset(int idOfNewUnit) {
 }
 
 void ArtilleryBuilder::setCost() {
-    result->setCost(140);
+    result->setCost(DefaultArtilleryStats::cost);
 }
 
 void ArtilleryBuilder::setHealth() {
-    result->setHealth(80);
+    result->setHealth(DefaultArtilleryStats::health);
 }
 
 void ArtilleryBuilder::setDamage() {
-    result->setDamage(15);
+    result->setDamage(DefaultArtilleryStats::damage);
 }
 
 void ArtilleryBuilder::setPointsOfMobility() {
-    result->setPointsOfMobility(2);
+    result->setPointsOfMobility(DefaultArtilleryStats::attackRange);
 }
 
 void ArtilleryBuilder::setAttackRange() {
