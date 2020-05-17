@@ -5,7 +5,6 @@
 
 void MoveCommand::execute() {
     std::pair<bool, double> checkMove = CommandChecker::checkMoveCommand(playground, from, to);
-    //std::cerr << "correct!"<< std::endl;
     if (checkMove.first) {
         if (CommandChecker::isAttackMove(playground, from, to))
             playground->calculateAttack(from, to);
@@ -58,7 +57,6 @@ Command* CommandReader::readCommand(Playground* mainPlayground) {
     Coordinates to = Coordinates(-1, -1);
     TypeOfUnit typeOfUnit = convertToTypeOfUnit(0);
     std::cin >> typeOfCommand;
-    //std::cout << "  QWWREG: "<< typeOfCommand<<std::endl;
     if (typeOfCommand == "move") {
         try {
             int first;
@@ -149,7 +147,6 @@ void calculateTable(Playground* mainPlayground, Coordinates from, double** table
     table[from.first][from.second] = 0;
     std::queue<std::pair<Coordinates, double>> potentialUpdates;
     double prevBonus = fabs(mainPlayground->getCell(from)->getTerrain()->getMoveBonus() / 2);
-    //potentialUpdates.push({from, fabs(mainPlayground->getCell(from)->getTerrain()->getMoveBonus() / 2)});
     potentialUpdates.push({Coordinates(from.first + 1, from.second + 1), prevBonus});
     potentialUpdates.push({Coordinates(from.first + 1, from.second), prevBonus});
     potentialUpdates.push({Coordinates(from.first, from.second + 1), prevBonus});
@@ -158,25 +155,14 @@ void calculateTable(Playground* mainPlayground, Coordinates from, double** table
     potentialUpdates.push({Coordinates(from.first - 1, from.second), prevBonus});
     potentialUpdates.push({Coordinates(from.first, from.second - 1), prevBonus});
     potentialUpdates.push({Coordinates(from.first - 1, from.second - 1), prevBonus});
-    /*for (unsigned i = 0; i < 20; ++i) {
-        for (unsigned j = 0; j < 20; ++j)
-            std::cerr << table[i][j] << " ";
-        std::cerr << std::endl;
-    }*/
     while (!potentialUpdates.empty()) {
-        //std::cerr << "correct!AAAA"<< std::endl;
         std::pair<Coordinates, double> newUpdate = potentialUpdates.front();
         Coordinates currentCell = newUpdate.first;
-        //std::cout << currentCell.first << " " << currentCell.second<< std::endl;
         potentialUpdates.pop();
         if (!isCorrectCoordinates(currentCell))
             continue;
         double nowBonus = fabs(mainPlayground->getCell(currentCell)->getTerrain()->getMoveBonus() / 2);
-        //std::cerr << nowBonus<<std::endl;
-        //std::cerr << newUpdate.second << std::endl;
-        //std::cerr << table[currentCell.first][currentCell.second] << std::endl;
         if (nowBonus + newUpdate.second < table[currentCell.first][currentCell.second]) {
-            //std::cerr << "IF!"<<std::endl;
             table[currentCell.first][currentCell.second] = newUpdate.second + nowBonus;
             nowBonus = table[currentCell.first][currentCell.second];
             potentialUpdates.push({Coordinates(currentCell.first + 1, currentCell.second + 1), nowBonus});
@@ -189,12 +175,6 @@ void calculateTable(Playground* mainPlayground, Coordinates from, double** table
             potentialUpdates.push({Coordinates(currentCell.first - 1, currentCell.second - 1), nowBonus});
         }
     }
-    /*std::cerr << "that's all!"<< std::endl;
-    for (unsigned i = 0; i < 20; ++i) {
-        for (unsigned j = 0; j < 20; ++j)
-            std::cerr << table[i][j] << " ";
-        std::cerr << std::endl;
-    }*/
 }
 
 int distBetweenCoordinates(Coordinates a, Coordinates b) {
@@ -208,7 +188,6 @@ std::pair<bool, double> CommandChecker::checkMoveCommand(Playground* mainPlaygro
         return {false, 0};
     if (mainPlayground->getCell(to)->getUnit() && mainPlayground->getCell(to)->getUnit()->getPlayerId() == mainPlayground->numberOfActivePlayer)
         return {false, 0};
-    //std::cerr << "correct!"<< std::endl;
     double rangeOfAttack = mainPlayground->getCell(from)->getUnit()->getAttackRange();
     if (rangeOfAttack < distBetweenCoordinates(from, to) && mainPlayground->getCell(to)->getUnit())
         return {false, 0};
@@ -221,9 +200,7 @@ std::pair<bool, double> CommandChecker::checkMoveCommand(Playground* mainPlaygro
             tableOfPointsOfMobility[i][j] = 1e9;
         }
     }
-    //std::cerr << "correct!"<< std::endl;
     calculateTable(mainPlayground, from, tableOfPointsOfMobility);
-    //std::cerr << "after calculate"<< std::endl;
     double currentPointsOfMobility = mainPlayground->getCell(from)->getUnit()->getPointsOfMobility();
     double neededPointsOfMobility = tableOfPointsOfMobility[to.first][to.second];
     for (unsigned i = 0; i < 20; ++i)
