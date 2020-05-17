@@ -12,5 +12,6 @@ int main() {
             command->execute();
         playground->print();
     }
+    playground->printWinner();
     return 0;
 }

@@ -43,8 +43,9 @@ public:
     bool isEndOfGame();
     void setUpPlayground();
     void setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit, unsigned numberOfPlayer);
-    Player getCurrentPlayer();
+    Player& getCurrentPlayer();
     Cell* getCell(Coordinates coordinates);
     void nextTurn();
+    void printWinner();
     ~Playground();
 };

@@ -28,6 +28,7 @@ Unit* Player::buyUnit(MainBuilder& builder, TypeOfUnit typeOfUnit) {
     }
     Unit* newUnit = builder.buildUnit(unitBuilder);
     _money -= newUnit->getCost();
+    newUnit->setPlayerId(_id);
     units[newUnit->getId()] = newUnit;
     return newUnit;
 }
@@ -49,7 +50,10 @@ void Player::damageUnit(unsigned long long id, double damage) {
 }
 
 void Player::decreaseMovePointsOfUnit(unsigned long long id, double delta) {
-    units[id]->setPointsOfMobility(units[id]->getPointsOfMobility() - delta);
+    if (delta < 0)
+        units[id]->setPointsOfMobility(0);
+    else
+        units[id]->setPointsOfMobility(units[id]->getPointsOfMobility() - delta);
 }
 
 void Player::nextTurn() {

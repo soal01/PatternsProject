@@ -111,23 +111,23 @@ double dmin(double a, double b) {
 }
 
 void Infantryman::heal() {
-    _health = dmin(_health * 1.1, DefaultInfatrymanStats::health);
+    _health = dmin(_health * 1.001, DefaultInfatrymanStats::health);
 }
 
 void Cavalryman::heal() {
-    _health = dmin(_health * 1.1, DefaultCavalrymanStats::health);
+    _health = dmin(_health * 1.001, DefaultCavalrymanStats::health);
 }
 
 void Tank::heal() {
-    _health = dmin(_health * 1.1, DefaultTankStats::health);
+    _health = dmin(_health * 1.001, DefaultTankStats::health);
 }
 
 void ArmoredCar::heal() {
-    _health = dmin(_health * 1.1, DefaultArmoredCarStats::health);
+    _health = dmin(_health * 1.001, DefaultArmoredCarStats::health);
 }
 
 void Artillery::heal() {
-    _health = dmin(_health * 1.1, DefaultArtilleryStats::health);
+    _health = dmin(_health * 1.001, DefaultArtilleryStats::health);
 }
 
 void Infantryman::recoveryOfPointOfMobility() {

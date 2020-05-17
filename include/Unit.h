@@ -95,7 +95,7 @@ class DefaultInfatrymanStats {
 public:
     static const int cost = 50;
     constexpr static const double health = 75.;
-    constexpr static const double damage = 8.;
+    constexpr static const double damage = 23.;
     constexpr static const double pointsOfMobility = 4.;
     static const int attackRange = 1;
 };
@@ -103,7 +103,7 @@ public:
 struct DefaultCavalrymanStats {
     static const int cost = 75;
     constexpr static const double health = 100.;
-    constexpr static const double damage = 7.;
+    constexpr static const double damage = 35.;
     constexpr static const double pointsOfMobility = 8.;
     static const int attackRange = 1.;
 };
@@ -111,7 +111,7 @@ struct DefaultCavalrymanStats {
 struct DefaultTankStats {
     static const int cost = 200;
     constexpr static const double health = 200.;
-    constexpr static const double damage = 16.;
+    constexpr static const double damage = 80.;
     constexpr static const double pointsOfMobility = 5.;
     static const int attackRange = 1;
 };
@@ -119,7 +119,7 @@ struct DefaultTankStats {
 struct DefaultArmoredCarStats {
     static const int cost = 100;
     constexpr static const double health = 130.;
-    constexpr static const double damage = 10.;
+    constexpr static const double damage = 45.;
     constexpr static const double pointsOfMobility = 6.;
     static const int attackRange = 1;
 };
@@ -127,7 +127,7 @@ struct DefaultArmoredCarStats {
 struct DefaultArtilleryStats {
     static const int cost = 140;
     constexpr static const double health = 80.;
-    constexpr static const double damage = 15.;
+    constexpr static const double damage = 60.;
     constexpr static const double pointsOfMobility = 2.;
     static const int attackRange = 2;
 };
