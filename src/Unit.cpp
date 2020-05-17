@@ -102,6 +102,10 @@ int Unit::getAttackRange() {
     return _attackRange;
 }
 
+double Unit::getDamage() {
+    return _damage;
+}
+
 void Infantryman::heal() {
     _health = std::min(_health * 1.1, DefaultInfatrymanStats::health);
 }

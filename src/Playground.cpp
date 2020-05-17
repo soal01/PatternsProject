@@ -133,60 +133,47 @@ std::string Playground::getInfoAboutCell(Coordinates coordinates) {
     return ans;
 }
 
-bool Playground::isCorrectMove(Coordinates from, Coordinates to) {
+void Playground::calculateAttack(Coordinates from, Coordinates to) {
     size_t xFrom = from.first;
     size_t yFrom = from.second;
     size_t xTo = to.first;
     size_t yTo = to.second;
-
-}
-
-bool Playground::isAttackMove(Coordinates from, Coordinates to) {
-    size_t xFrom = from.first;
-    size_t yFrom = from.second;
-    size_t xTo = to.first;
-    size_t yTo = to.second;
-
-}
-
-void Playground::calculateAttack(Unit* attacker, Terrain* terrainOfAttacker,
-                        Unit* defender, Terrain* terrainOfDefender) {
-
-}
-
-void Playground::moveUnit(Coordinates from, Coordinates to) {
-    size_t xFrom = from.first;
-    size_t yFrom = from.second;
-    size_t xTo = to.first;
-    size_t yTo = to.second;
-    if (isAttackMove(from, to)) {
-        Unit* attacker = _cells[xFrom][yFrom]->getUnit();
-        Unit* defender = _cells[xTo][yTo]->getUnit();
-        Terrain* terrainOfAttacker = _cells[xFrom][yFrom]->getTerrain();
-        Terrain* terrainOfDefender = _cells[xTo][yTo]->getTerrain();
-        calculateAttack(attacker, terrainOfAttacker, defender, terrainOfDefender);
-        if (attacker->getHealth() <= 0) {
-            attacker = nullptr;
-        }
-        if (defender->getHealth() <= 0) {
-            _cells[xFrom][yFrom]->setUnit(nullptr);
-            _cells[xTo][yTo]->setUnit(attacker);
-        }
-        else {
-            _cells[xFrom][yFrom]->setUnit(attacker);
-            _cells[xTo][yTo]->setUnit(defender);
-        }
-    }
-    else {
-        Unit* unit = _cells[xFrom][yFrom]->getUnit();
+    Unit* attacker = _cells[xFrom][yFrom]->getUnit();
+    Unit* defender = _cells[xTo][yTo]->getUnit();
+    int idOfAttacker = attacker->getId();
+    int idOfDefender = defender->getId();
+    Terrain* terrainOfAttacker = _cells[xFrom][yFrom]->getTerrain();
+    Terrain* terrainOfDefender = _cells[xTo][yTo]->getTerrain();
+    double attackerDamage = attacker->getDamage() * (terrainOfAttacker->getAttackBonus() - 0.5 * terrainOfDefender->getDefenseBonus());
+    double defenderDamage = defender->getDamage() * terrainOfDefender->getAttackBonus() * 0.5;
+    _players[attacker->getPlayerId()].damageUnit(idOfAttacker, defenderDamage);
+    _players[defender->getPlayerId()].damageUnit(idOfDefender, attackerDamage);
+    if (attacker->getHealth() - defenderDamage < 0) {
+        _players[attacker->getPlayerId()].destroyUnit(idOfAttacker);
         _cells[xFrom][yFrom]->setUnit(nullptr);
-        _cells[xTo][yTo]->setUnit(unit);
     }
+    if (defender->getHealth() - attackerDamage < 0) {
+        _players[defender->getPlayerId()].destroyUnit(idOfDefender);
+        _cells[xTo][yTo]->setUnit(nullptr);
+    }
+}
+
+void Playground::moveUnit(Coordinates from, Coordinates to, double dist) {
+    Unit* moveUnit = _cells[from.first][from.second]->getUnit();
+    _cells[to.first][to.second]->setUnit(moveUnit);
+    getCurrentPlayer().decreaseMovePointsOfUnit(moveUnit->getId(), dist);
+    _cells[from.first][to.second]->setUnit(nullptr);
 }
 
 Player Playground::getCurrentPlayer() {
     return _players[numberOfActivePlayer];
 }
+
 Cell* Playground::getCell(Coordinates coordinates) {
     return _cells[coordinates.first][coordinates.second];
+}
+
+void Playground::nextTurn() {
+    numberOfActivePlayer = (numberOfActivePlayer + 1) % COUNT_OF_PLAYERS;
+    _players[numberOfActivePlayer].nextTurn();
 }

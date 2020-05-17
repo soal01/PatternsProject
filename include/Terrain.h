@@ -20,6 +20,8 @@ public:
     virtual void setImageOnPlayground(char imageOnPlayground);
     virtual char getImageOnPlayGround();
     virtual double getMoveBonus();
+    virtual double getAttackBonus();
+    virtual double getDefenseBonus();
 };
 
 
@@ -56,8 +58,8 @@ protected:
 
 class ForestFeatures : public TerrainFeatures {
     ForestFeatures() {
-        attackBonus = 0;
-        defenseBonus = 1;
+        attackBonus = 0.5;
+        defenseBonus = 1.3;
         moveBonus = -1.5;
     }
 };
@@ -65,7 +67,7 @@ class ForestFeatures : public TerrainFeatures {
 class MountainFeatures : public TerrainFeatures {
     MountainFeatures() {
         attackBonus = 1;
-        defenseBonus = 1;
+        defenseBonus = 2;
         moveBonus = -3;
     }
 };
@@ -73,7 +75,7 @@ class MountainFeatures : public TerrainFeatures {
 class GrassLandFeatures : public TerrainFeatures {
     GrassLandFeatures() {
         attackBonus = 1;
-        defenseBonus = 0;
+        defenseBonus = 0.3;
         moveBonus = -1;
     }
 };

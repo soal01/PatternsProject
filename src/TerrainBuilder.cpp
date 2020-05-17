@@ -7,15 +7,15 @@ void ForestBuilder::reset() {
 }
 
 void ForestBuilder::setAttackBonus() {
-    result->setAttackBonus(0);
+    result->setAttackBonus(0.5);
 }
 
 void ForestBuilder::setDefenseBonus() {
-    result->setDefenseBonus(1);
+    result->setDefenseBonus(1.3);
 }
 
 void ForestBuilder::setMoveBonus() {
-    result->setMoveBonus(-0.5);
+    result->setMoveBonus(-1.5);
 }
 
 void ForestBuilder::setImageOnPlayground() {
@@ -40,7 +40,7 @@ void MountainBuilder::setDefenseBonus() {
 }
 
 void MountainBuilder::setMoveBonus() {
-    result->setMoveBonus(-1);
+    result->setMoveBonus(-3);
 }
 
 void MountainBuilder::setImageOnPlayground() {
@@ -61,11 +61,11 @@ void GrassLandBuilder::setAttackBonus() {
 }
 
 void GrassLandBuilder::setDefenseBonus() {
-    result->setDefenseBonus(-1);
+    result->setDefenseBonus(0.3);
 }
 
 void GrassLandBuilder::setMoveBonus() {
-    result->setMoveBonus(1);
+    result->setMoveBonus(-1);
 }
 
 void GrassLandBuilder::setImageOnPlayground() {

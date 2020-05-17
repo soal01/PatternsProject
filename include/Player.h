@@ -17,6 +17,10 @@ public:
     int getMoney();
     bool isHisTurn();
     Unit* buyUnit(MainBuilder& builder, TypeOfUnit typeOfUnit);
+    void destroyUnit(unsigned long long id);
+    void damageUnit(unsigned long long id, double damage);
+    void decreaseMovePointsOfUnit(unsigned long long id, double delta);
     size_t countOfUnits();
+    void nextTurn();
     ~Player();
 };

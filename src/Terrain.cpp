@@ -37,6 +37,14 @@ double Terrain::getMoveBonus() {
     return _moveBonus;
 }
 
+double Terrain::getAttackBonus() {
+    return _attackBonus;
+}
+
+double Terrain::getDefenseBonus() {
+    return _defenseBonus;
+}
+
 Forest::Forest(): Terrain() {}
 
 Mountain::Mountain(): Terrain() {}

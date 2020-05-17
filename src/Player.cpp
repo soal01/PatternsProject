@@ -39,3 +39,23 @@ size_t Player::countOfUnits() {
 int Player::getMoney() {
     return _money;
 }
+
+void Player::destroyUnit(unsigned long long id) {
+    delete units[id];
+}
+
+void Player::damageUnit(unsigned long long id, double damage) {
+    units[id]->setHealth(units[id]->getHealth() - damage);
+}
+
+void Player::decreaseMovePointsOfUnit(unsigned long long id, double delta) {
+    units[id]->setPointsOfMobility(units[id]->getPointsOfMobility() - delta);
+}
+
+void Player::nextTurn() {
+    _money += 50;
+    for (auto& unit: units) {
+        unit.second->heal();
+        unit.second->recoveryOfPointOfMobility();
+    }
+}

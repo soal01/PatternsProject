@@ -4,11 +4,12 @@
 #include<queue>
 
 void MoveCommand::execute() {
-    if (CommandChecker::checkMoveCommand(playground, from, to)) {
+    std::pair<bool, double> checkMove = CommandChecker::checkMoveCommand(playground, from, to);
+    if (checkMove.first) {
         if (CommandChecker::isAttackMove(playground, from, to))
             playground->calculateAttack(from, to);
         else
-            playground->moveUnit(from, to);
+            playground->moveUnit(from, to, checkMove.second);
     }
     else
         playground->setError("uncorrect move");
@@ -29,6 +30,10 @@ void InfoCommand::execute() {
         playground->setError("Uncorrect place");
 }
 
+void NextTurnCommand::execute() {
+    playground->nextTurn();
+}
+
 Command::Command(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit):
      playground(playground), from(from), to(to), typeOfUnit(typeOfUnit) {}
 
@@ -42,7 +47,8 @@ BuyCommand::BuyCommand(Playground* playground, Coordinates from, Coordinates to,
 InfoCommand::InfoCommand(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit):
     Command(playground, from, to, typeOfUnit) {}
 
-
+NextTurnCommand::NextTurnCommand(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit):
+    Command(playground, from, to, typeOfUnit) {}
 
 Command* CommandReader::readCommand(Playground* mainPlayground) {
     std::cout << "Command: ";
@@ -90,6 +96,9 @@ Command* CommandReader::readCommand(Playground* mainPlayground) {
             std::cout << std::endl;
             return nullptr;
         }
+    }
+    if (typeOfCommand == "next turn") {
+        mainPlayground->nextTurn();
     }
     mainPlayground->setError("invalid command");
     std::cout << std::endl;
@@ -160,18 +169,18 @@ int distBetweenCoordinates(Coordinates a, Coordinates b) {
     return std::max(abs(a.first - b.first), abs(a.second - b.second));
 }
 
-bool CommandChecker::checkMoveCommand(Playground* mainPlayground, Coordinates from, Coordinates to) {
+std::pair<bool, double> CommandChecker::checkMoveCommand(Playground* mainPlayground, Coordinates from, Coordinates to) {
     if (!isCorrectCoordinates(from) || !isCorrectCoordinates(to))
-        return false;
+        return {false, 0};
     if (!mainPlayground->getCell(from)->getUnit())
-        return false;
+        return {false, 0};
     if (mainPlayground->getCell(to)->getUnit() && mainPlayground->getCell(to)->getUnit()->getPlayerId() == mainPlayground->numberOfActivePlayer)
-        return false;
+        return {false, 0};
     double rangeOfAttack = mainPlayground->getCell(from)->getUnit()->getAttackRange();
     if (rangeOfAttack < distBetweenCoordinates(from, to))
-        return false;
+        return {false, 0};
     if (mainPlayground->getCell(from)->getUnit()->getPlayerId() != mainPlayground->numberOfActivePlayer)
-        return false;
+        return {false, 0};
     double** tableOfPointsOfMobility = new double*[20];
     for (unsigned i = 0; i < 20; ++i) {
         tableOfPointsOfMobility[i] = new double[20];
@@ -185,7 +194,7 @@ bool CommandChecker::checkMoveCommand(Playground* mainPlayground, Coordinates fr
     for (unsigned i = 0; i < 20; ++i)
         delete tableOfPointsOfMobility[i];
     delete[] tableOfPointsOfMobility;
-    return currentPointsOfMobility >= neededPointsOfMobility;
+    return {currentPointsOfMobility >= neededPointsOfMobility, neededPointsOfMobility};
 }
 
 bool CommandChecker::isAttackMove(Playground* mainPlayground, Coordinates from, Coordinates to) {

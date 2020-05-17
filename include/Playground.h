@@ -35,14 +35,14 @@ public:
     void setError(std::string newError);
     //bool isCorrectMove(Coordinates from, Coordinates to);
     //bool isAttackMove(Coordinates from, Coordinates to);
-    void moveUnit(Coordinates from, Coordinates to);
-    void calculateAttack(Unit* attacker, Terrain* terrainOfAttacker,
-                        Unit* defender, Terrain* terrainOfDefender);
+    void moveUnit(Coordinates from, Coordinates to, double dist);
+    void calculateAttack(Coordinates from, Coordinates to);
 
     void print();
     bool isEndOfGame();
     void setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit);
     Player getCurrentPlayer();
     Cell* getCell(Coordinates coordinates);
+    void nextTurn();
     ~Playground();
 };

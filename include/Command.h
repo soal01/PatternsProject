@@ -31,6 +31,12 @@ public:
     void execute() override;
 };
 
+class NextTurnCommand: public Command {
+public:
+    NextTurnCommand(Playground* playground, Coordinates from, Coordinates to, TypeOfUnit typeOfUnit);
+    void execute() override;
+};
+
 
 class CommandReader {
 public:
@@ -41,7 +47,7 @@ public:
 
 class CommandChecker {
 public:
-    static bool checkMoveCommand(Playground* mainPlayground, Coordinates from, Coordinates to);
+    static std::pair<bool, double> checkMoveCommand(Playground* mainPlayground, Coordinates from, Coordinates to);
     static bool checkBuyCommand(Playground* mainPlayground, Coordinates from, TypeOfUnit typeOfUnit);
     static bool checkInfoCommand(Playground* mainPlayground, Coordinates from);
     static bool isAttackMove(Playground* mainPlayground, Coordinates from, Coordinates to);
