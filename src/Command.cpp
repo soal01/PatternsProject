@@ -18,7 +18,7 @@ void MoveCommand::execute() {
 
 void BuyCommand::execute() {
     if (CommandChecker::checkBuyCommand(playground, from, typeOfUnit))
-        playground->setUnitOnPlayground(from, typeOfUnit);
+        playground->setUnitOnPlayground(from, typeOfUnit, playground->numberOfActivePlayer);
     else
         playground->setError("You haven't got enough money or uncorrect place");  
 }
@@ -57,6 +57,7 @@ Command* CommandReader::readCommand(Playground* mainPlayground) {
     Coordinates to = Coordinates(-1, -1);
     TypeOfUnit typeOfUnit = convertToTypeOfUnit(0);
     std::cin >> typeOfCommand;
+    //std::cout << "  QWWREG: "<< typeOfCommand<<std::endl;
     if (typeOfCommand == "move") {
         try {
             int first, second;
@@ -97,9 +98,19 @@ Command* CommandReader::readCommand(Playground* mainPlayground) {
             return nullptr;
         }
     }
-    if (typeOfCommand == "next turn") {
-        mainPlayground->nextTurn();
+    if (typeOfCommand == "next_turn") {
+        return new NextTurnCommand(mainPlayground, from, to, typeOfUnit);
     }
+    /*if (typeOfCommand == "admin") {
+        try{
+        std::string typeOfAdminCommand;
+        std::
+        } catch(...) {
+            mainPlayground->setError("invalid arguments");
+            std::cout << std::endl;
+            return nullptr;
+        }
+    }*/
     mainPlayground->setError("invalid command");
     std::cout << std::endl;
     return nullptr;

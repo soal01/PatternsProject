@@ -74,7 +74,7 @@ void Playground::deleteInstance() {
 
 void Playground::printMap() {
     std::cout << std::string('=', 25);
-    std:: cout << "  ";
+    std:: cout << "   ";
     for (unsigned i = 0; i < SIZE_OF_PLAYGROUND; ++i) {
         std::cout << (char)('A' + i) << " ";
     }
@@ -91,12 +91,13 @@ void Playground::printMap() {
 
 void Playground::print() {
     printMap();
-    std::cout << "Info:\n" << _info;
+    std::cout << _info;
     std::cout << "Error: " << _error;
+    std::cout << std::endl;
 }
 
-void Playground::setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit) {
-    Unit* newUnit = _players[numberOfActivePlayer].buyUnit(builder, typeOfUnit);
+void Playground::setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit, unsigned numberOfPlayer) {
+    Unit* newUnit = _players[numberOfPlayer].buyUnit(builder, typeOfUnit);
     newUnit->setPositionOfUnit(coordinates);
     _cells[coordinates.first][coordinates.second]->setUnit(newUnit);
 }
@@ -121,10 +122,10 @@ std::string Playground::getInfoAboutCell(Coordinates coordinates) {
     size_t x = coordinates.first;
     size_t y = coordinates.second;
     std::string ans = "Info:\n";
-    ans += "Coordinates: " + std::to_string((char)('A' + x)) + std::to_string(y) + "\n";
+    ans += "Coordinates: " + std::to_string((char)('A' + x)) + " " + std::to_string(y) + "\n";
     ans += "Terrain: " + getTypeOfTerrain(_cells[x][y]->getTerrain()) + "\n";
     Unit* unit = _cells[x][y]->getUnit();
-    ans += "Unit: " + getTypeOfUnit(unit);
+    ans += "Unit: " + getTypeOfUnit(unit) + "\n";
     if (unit) {
         ans += "player's ID: " + std::to_string(unit->getPlayerId()) + "\n";
         ans += "health: " + std::to_string(unit->getHealth()) + "\n";
@@ -176,4 +177,9 @@ Cell* Playground::getCell(Coordinates coordinates) {
 void Playground::nextTurn() {
     numberOfActivePlayer = (numberOfActivePlayer + 1) % COUNT_OF_PLAYERS;
     _players[numberOfActivePlayer].nextTurn();
+}
+
+void Playground::setUpPlayground() {
+    setUnitOnPlayground(Coordinates(0, 0), TypeOfUnit::infantryman, 1);
+    setUnitOnPlayground(Coordinates(19, 19), TypeOfUnit::infantryman, 0);
 }

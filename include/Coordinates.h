@@ -5,7 +5,9 @@
 struct Coordinates {
     int first;
     int second;
-    Coordinates(int first = 0, int second = 0): first(first), second(second) {}
+    Coordinates(): first(0), second(0) {}
+    Coordinates(int first, int second): first(first), second(second) {}
+    Coordinates(int first, char second): first(first), second(second - 'A') {}
 };
 
 

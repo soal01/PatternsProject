@@ -3,6 +3,7 @@
 #include"string"
 #include"Player.h"
 #include"MainBuilder.h"
+#include"Unit.h"
 
 class Playground {
 private:
@@ -40,7 +41,8 @@ public:
 
     void print();
     bool isEndOfGame();
-    void setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit);
+    void setUpPlayground();
+    void setUnitOnPlayground(Coordinates coordinates, TypeOfUnit typeOfUnit, unsigned numberOfPlayer);
     Player getCurrentPlayer();
     Cell* getCell(Coordinates coordinates);
     void nextTurn();

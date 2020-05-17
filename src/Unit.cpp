@@ -106,24 +106,28 @@ double Unit::getDamage() {
     return _damage;
 }
 
+double dmin(double a, double b) {
+    return (a < b)? a : b;
+}
+
 void Infantryman::heal() {
-    _health = std::min(_health * 1.1, DefaultInfatrymanStats::health);
+    _health = dmin(_health * 1.1, DefaultInfatrymanStats::health);
 }
 
 void Cavalryman::heal() {
-    _health = std::min(_health * 1.1, DefaultCavalrymanStats::health);
+    _health = dmin(_health * 1.1, DefaultCavalrymanStats::health);
 }
 
 void Tank::heal() {
-    _health = std::min(_health * 1.1, DefaultTankStats::health);
+    _health = dmin(_health * 1.1, DefaultTankStats::health);
 }
 
 void ArmoredCar::heal() {
-    _health = std::min(_health * 1.1, DefaultArmoredCarStats::health);
+    _health = dmin(_health * 1.1, DefaultArmoredCarStats::health);
 }
 
 void Artillery::heal() {
-    _health = std::min(_health * 1.1, DefaultArtilleryStats::health);
+    _health = dmin(_health * 1.1, DefaultArtilleryStats::health);
 }
 
 void Infantryman::recoveryOfPointOfMobility() {
@@ -155,3 +159,4 @@ Tank::Tank(): Unit() {}
 ArmoredCar::ArmoredCar(): Unit() {}
 
 Artillery::Artillery(): Unit() {}
+
