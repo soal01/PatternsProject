@@ -24,9 +24,7 @@ private:
     static Playground* mainPlayground;
     
     void printMap();
-    //void printInfo(Coordinates coordinates);
-    //std::string getErrors();
-
+    
 public:
     unsigned numberOfActivePlayer;
     static Playground* getInstance();
@@ -34,8 +32,6 @@ public:
     std::string getInfoAboutCell(Coordinates coordinates);
     void setInfo(std::string newInfo);
     void setError(std::string newError);
-    //bool isCorrectMove(Coordinates from, Coordinates to);
-    //bool isAttackMove(Coordinates from, Coordinates to);
     void moveUnit(Coordinates from, Coordinates to, double dist);
     void calculateAttack(Coordinates from, Coordinates to);
 
